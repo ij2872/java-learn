@@ -2,6 +2,7 @@ package HackerRank;
 
 /**
  * Created by Ivan on 10/4/17.
+ * UN-OPTIMIZED - BRUTE FORCE APPROACH - SLOW
  */
 import java.io.*;
 import java.util.*;
@@ -13,7 +14,7 @@ class Node {
     char c;
     HashMap<Character, Node> children = new HashMap<Character, Node>();
     public boolean isLeaf;
-
+    public int size = 0;
     public Node(){};
 
     public Node(char c){
@@ -40,6 +41,7 @@ class Trie{
                 t = children.get(c);
             } else {
                 t = new Node(c);
+                t.size++;
                 children.put(c, t);
             }
 
@@ -78,6 +80,8 @@ class Trie{
             if(children.containsKey(c)){
                 t = children.get(c);
                 children = t.children;
+            } else {
+                return 0;
             }
         }
 
@@ -145,11 +149,10 @@ public class TriesContact {
 //        trie("find", "hak");
 
         Trie t = new Trie();
-        t.insert("hacker");
+        t.insert("hack");
         t.insert("hackerrank");
-        t.insert("hackerranks");
         System.out.println(t.prefixCount("hac"));
-        System.out.println(t.prefix("hak"));
+        System.out.println(t.prefixCount("hak"));
 
     }
 }
